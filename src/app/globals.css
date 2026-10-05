@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f4ee;
+  --foreground: #24313b;
+  --ink: #24313b;
+  --muted: #69747a;
+  --paper: #fffdf8;
+  --line: #dedbd2;
+  --coral: #e98568;
+  --coral-dark: #bd5f4d;
+  --sage: #dce8dc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-dm-sans);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-dm-sans), sans-serif;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+button,
+textarea,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+.serif {
+  font-family: var(--font-fraunces), Georgia, serif;
+}
+.grain {
+  background-image: radial-gradient(#c7c1b5 0.7px, transparent 0.7px);
+  background-size: 14px 14px;
+  opacity: 0.24;
+}
+.soft-shadow {
+  box-shadow: 0 18px 50px rgba(50, 54, 52, 0.08);
+}
+.fade-up {
+  animation: fade-up 0.55s ease both;
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
