@@ -11,6 +11,12 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Supabase setup
+
+Create a Supabase project, copy `.env.example` to `.env.local`, fill in the project URL and anon key, and run [`supabase/schema.sql`](supabase/schema.sql) in the SQL editor. Email/password auth must be enabled in Supabase Auth. The schema enables RLS so sessions are only readable, exportable, or deletable by their owner.
+
+The app uses the U.S. as its launch region for verified support links: 988, 911, SAMHSA's treatment locator, and Crisis Text Line. Campus contacts are intentionally routed through each school's official `.edu` site because no specific campus was provided.
+
 ## What is implemented
 
 - Responsive landing page with clear product boundaries.
@@ -18,22 +24,15 @@ Open `http://localhost:3000`.
 - Relief state selection and low-friction activity choices.
 - Checkpoint to continue, repeat relief, or save.
 - Editable next step with a time boundary.
-- Private-by-default save confirmation.
-- Read-only anonymous community preview.
-- Support resources and non-diagnostic safety language.
-- Draft persistence in browser `localStorage` for this prototype.
+- Private-by-default save confirmation with `private`, `personal_only`, and `anonymous_community` visibility.
+- Supabase Auth, server-side session persistence, ownership checks, deletion, and JSON export.
+- Personal dashboard and exact anonymous sharing preview.
+- Opt-in community posts, reactions, reporting, and owner hiding.
+- Verified U.S. support links and non-diagnostic safety language.
 
-## Current MVP boundary
+## Production notes
 
-This is the private core-loop prototype. Authentication, a server database, real session history, account settings, moderation, and anonymous post creation are intentionally not wired yet. The current browser storage is useful for validating the experience but is not suitable for sensitive production data.
-
-## Next build phase
-
-1. Add Supabase Auth and Postgres with explicit visibility states: `private`, `personal_only`, and `anonymous_community`.
-2. Move session persistence server-side with ownership checks, deletion, and export paths.
-3. Add a real personal dashboard and save/share preview.
-4. Add community posts, reactions, reporting, and hiding behind explicit opt-in.
-5. Replace the placeholder crisis/campus links with verified local resources for the launch region.
+Community moderation should be connected to an admin workflow before public launch. The current report endpoint records reports and owner hiding is available; it does not yet auto-moderate or notify staff.
 
 ## Verification
 
