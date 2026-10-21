@@ -23,11 +23,7 @@ export async function serverSupabaseFetch<T>(path: string, init: RequestInit = {
 
 export async function currentUser() {
   const supabase = await createServerClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  const token = session?.access_token;
-  if (!token || !supabaseConfigured) return null;
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/user`, {
-    headers: { apikey: supabaseKey!, Authorization: `Bearer ${token}` }, cache: "no-store",
-  });
-  return response.ok ? response.json() : null;
+  if (!supabaseConfigured) return null;
+  const { data: { user } } = await supabase.auth.getUser();
+  return user;
 }

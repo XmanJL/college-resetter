@@ -6,7 +6,11 @@ export async function GET() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  return Response.json({ authenticated: Boolean(user) });
+  const fallbackName = user?.email?.split("@")[0] || "there";
+  return Response.json({
+    authenticated: Boolean(user),
+    displayName: user?.user_metadata?.display_name || fallbackName,
+  });
 }
 export async function POST(request: Request) {
   if (!supabaseConfigured)
