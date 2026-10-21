@@ -15,19 +15,7 @@
 }
 
 html {
-  font-size: 112.5%;
-}
-
-@media (min-width: 1280px) {
-  html {
-    font-size: 115%;
-  }
-}
-
-@media (min-width: 1600px) {
-  html {
-    font-size: 120%;
-  }
+  font-size: 100%;
 }
 
 @theme inline {
